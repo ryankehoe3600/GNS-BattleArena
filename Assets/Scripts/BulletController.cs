@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class BulletController : MonoBehaviour
+{
+    Rigidbody rigidBody;
+
+    public float bulletSpeed = 15f;
+    public AudioClip bulletHitSound;
+
+    void Awake()
+    {
+        rigidBody = GetComponent<Rigidbody>();
+    }
+
+    public void InitializeBullet(Vector3 originalDirection)
+    {
+        transform.forward = originalDirection;
+        rigidBody.linearVelocity = transform.forward * bulletSpeed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+
+    {
+        AudioManager.Instance.Play3D(
+            bulletHitSound, 
+            transform.position
+        );
+
+        Destroy(gameObject);
+    }
+    
+}

@@ -5,6 +5,12 @@ public class Player : MonoBehaviour
 
     public float movementSpeed = 10f;
     Rigidbody rigidBody;
+    public float fireRate = 0.75f;
+    public GameObject bulletPrefab;
+    public Transform bulletPosition;
+    
+    private float nextFire = 0f;
+    public AudioClip playerShootingAudio;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,6 +20,36 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Fire();
+        }
+    }
+
+    void Fire()
+    {
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+
+            GameObject bullet = Instantiate(
+                bulletPrefab, 
+                bulletPosition.position, 
+                bulletPosition.rotation
+            );
+
+            bullet.GetComponent<BulletController>()?
+            .InitializeBullet(transform.rotation * Vector3.forward);
+
+            AudioManager.Instance.Play3D(
+                playerShootingAudio, 
+                transform.position
+            );
+
+
+
+        }
     }
 
     void Move()
