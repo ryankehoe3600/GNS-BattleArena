@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     public int health = 100;
     public Slider healthBar;
 
+    public delegate void EnemyKilled();
+    public static event EnemyKilled OnEnemyKilled;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
@@ -47,6 +50,11 @@ public class Enemy : MonoBehaviour
     void EnemyDied()
     {
         gameObject.SetActive(false);
+
+        if (OnEnemyKilled != null)
+        {
+            OnEnemyKilled.Invoke();
+        }
     }
 
 
