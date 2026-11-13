@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   bulletSpeed: 15
   bulletHitSound: {fileID: 8300000, guid: 55c030d3c6b3b674e9bdd7449446236c, type: 3}
+  bulletImpactEffect: {fileID: 1000010321467122, guid: 0b39af0d39f5fe443807a910bd327abe, type: 3}

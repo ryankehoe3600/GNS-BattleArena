@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour
 
     public float bulletSpeed = 15f;
     public AudioClip bulletHitSound;
+    public GameObject bulletImpactEffect;
 
     void Awake()
     {
@@ -23,6 +24,11 @@ public class BulletController : MonoBehaviour
     {
         AudioManager.Instance.Play3D(
             bulletHitSound, 
+            transform.position
+        );
+
+        VFXManager.Instance.PlayVFX(
+            bulletImpactEffect, 
             transform.position
         );
 

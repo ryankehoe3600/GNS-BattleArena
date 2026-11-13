@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     
     private float nextFire = 0f;
     public AudioClip playerShootingAudio;
+    public GameObject bulletFiringEffect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,6 +46,11 @@ public class Player : MonoBehaviour
             AudioManager.Instance.Play3D(
                 playerShootingAudio, 
                 transform.position
+            );
+
+            VFXManager.Instance.PlayVFX(
+                bulletFiringEffect, 
+                bulletPosition.position
             );
 
 
