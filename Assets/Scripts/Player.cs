@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Player : MonoBehaviour
     private float nextFire = 0f;
     public AudioClip playerShootingAudio;
     public GameObject bulletFiringEffect;
+    [HideInInspector]
+    public int health = 100;
+    public Slider healthBar;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +31,32 @@ public class Player : MonoBehaviour
         {
             Fire();
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+           BulletController bullet = collision.gameObject.GetComponent<BulletController>();
+
+           TakeDamage(bullet.damage);
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        health -= damage;
+        healthBar.value = health;
+
+        if (health <= 0)
+        {
+            PlayerDied();
+        }
+    }
+
+    void PlayerDied()
+    {
+        gameObject.SetActive(false);
     }
 
     void Fire()

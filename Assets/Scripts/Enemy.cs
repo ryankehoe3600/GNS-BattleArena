@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,14 +10,43 @@ public class Enemy : MonoBehaviour
 
     public AudioClip playerShootingAudio;
     public GameObject bulletFiringEffect;
+    [HideInInspector]
+    public int health = 100;
+    public Slider healthBar;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
             transform.LookAt(other.transform);
             Fire();
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+           BulletController bullet = collision.gameObject.GetComponent<BulletController>();
+
+           TakeDamage(bullet.damage);
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        health -= damage;
+        healthBar.value = health;
+
+        if (health <= 0)
+        {
+            EnemyDied();
+        }
+    }
+
+    void EnemyDied()
+    {
+        gameObject.SetActive(false);
     }
 
 

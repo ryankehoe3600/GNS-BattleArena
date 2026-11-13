@@ -7,6 +7,7 @@ public class BulletController : MonoBehaviour
     public float bulletSpeed = 15f;
     public AudioClip bulletHitSound;
     public GameObject bulletImpactEffect;
+    public int damage = 10;
 
     void Awake()
     {
