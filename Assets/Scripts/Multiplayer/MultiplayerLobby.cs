@@ -77,5 +77,23 @@ using UnityEngine.UI;
 
         PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);
     }
+
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("Room has beencreated!");
+
+    }
+
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("Failed to create room: " + message);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("Room has been joined!");
+
+        ActivatePanel("InsideRoom");
+    }
   }
 
