@@ -857,6 +857,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4731548797671380, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
   m_PrefabInstance: {fileID: 470480000}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &474335082 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6812360275661751425, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+  m_PrefabInstance: {fileID: 1569196416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &481908930 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6812360275954169340, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+  m_PrefabInstance: {fileID: 1569196416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &520763311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1120,6 +1130,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650826414}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!224 &653435170 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6812360275905130701, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+  m_PrefabInstance: {fileID: 1569196416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &693915460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1836039897307064, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
@@ -1276,6 +1291,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4731548797671380, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
   m_PrefabInstance: {fileID: 729319778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &768481126 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6812360274712863575, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+  m_PrefabInstance: {fileID: 1569196416}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &804137807 stripped
 GameObject:
@@ -2097,6 +2117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca66b6dafb22a241896bd01a3cc509d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiplayerLobby
+  LoginPanel: {fileID: 474335082}
+  SelectionPanel: {fileID: 768481126}
+  CreateRoomPanel: {fileID: 653435170}
+  InsideRoomPanel: {fileID: 2027534970}
+  ListRoomsPanel: {fileID: 481908930}
 --- !u!1001 &1089184353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2843,6 +2868,18 @@ PrefabInstance:
     - target: {fileID: 6812360275051167502, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812360275173874635, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1067577285}
+    - target: {fileID: 6812360275173874635, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisconnectButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812360275173874635, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MultiplayerLobby, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6812360276434947485, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4106,6 +4143,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 492031f9cbc117d419c5271ccc50b76a, type: 3}
+--- !u!224 &2027534970 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6812360276169851820, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+  m_PrefabInstance: {fileID: 1569196416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2049242868 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1836039897307064, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
