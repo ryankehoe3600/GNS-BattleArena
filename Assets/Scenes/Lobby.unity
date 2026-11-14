@@ -2122,6 +2122,7 @@ MonoBehaviour:
   CreateRoomPanel: {fileID: 653435170}
   InsideRoomPanel: {fileID: 2027534970}
   ListRoomsPanel: {fileID: 481908930}
+  roomNameInput: {fileID: 1428119878}
 --- !u!1001 &1089184353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2704,6 +2705,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4731548797671380, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
   m_PrefabInstance: {fileID: 1371213915}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1428119878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6812360276286466818, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+  m_PrefabInstance: {fileID: 1569196416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1434506601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1836039897307064, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
@@ -2878,6 +2890,18 @@ PrefabInstance:
       value: DisconnectButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 6812360275173874635, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MultiplayerLobby, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812360275855606238, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1067577285}
+    - target: {fileID: 6812360275855606238, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CreateARoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812360275855606238, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MultiplayerLobby, Assembly-CSharp
       objectReference: {fileID: 0}
