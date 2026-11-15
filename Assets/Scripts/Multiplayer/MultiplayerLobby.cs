@@ -2,6 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 
   public class MultiplayerLobby : MonoBehaviourPunCallbacks
@@ -16,6 +17,9 @@ using UnityEngine.UI;
     string playerName;
     public GameObject textPrefab;
     public Transform insideRoomPlayerList;
+    public Transform listRoomPanel;
+    public GameObject roomEntryPrefab;
+    public Transform listRoomPanelContent;
 
     private void Start()
     {
@@ -130,6 +134,53 @@ using UnityEngine.UI;
         Debug.Log("Room has been left!");
 
         ActivatePanel("CreateRoom");
+
+        DestroyChildren(insideRoomPlayerList);
+    }
+
+    public void DestroyChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    public void ListRoomsClicked()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("Joined lobby!");
+
+        ActivatePanel("ListRooms");
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        Debug.Log("Room updates: " + roomList.Count);
+
+        foreach (var room in roomList)
+        {
+            var newRoomEntry = Instantiate(
+                roomEntryPrefab,
+                listRoomPanelContent
+            );
+        }
+    }
+
+    public void LeaveLobbyClicked()
+    {
+        PhotonNetwork.LeaveLobby();
+    }
+
+    public override void OnLeftLobby()
+    {
+        Debug.Log("Left lobby!");
+
+        ActivatePanel("Selection");
     }
   }
 
