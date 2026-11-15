@@ -1313,6 +1313,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6812360274712863575, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
   m_PrefabInstance: {fileID: 1569196416}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &768914708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6812360275880991983, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+  m_PrefabInstance: {fileID: 1569196416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &804137807 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1836039897307064, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
@@ -2145,6 +2150,7 @@ MonoBehaviour:
   listRoomPanel: {fileID: 481908930}
   roomEntryPrefab: {fileID: 2667130366036724534, guid: 441c8085485e1cf4eb3fc2764938800c, type: 3}
   listRoomPanelContent: {fileID: 20255743}
+  startGameButton: {fileID: 768914708}
 --- !u!1001 &1089184353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3004,6 +3010,18 @@ PrefabInstance:
       value: CreateARoom
       objectReference: {fileID: 0}
     - target: {fileID: 6812360275855606238, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MultiplayerLobby, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812360275880991981, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1067577285}
+    - target: {fileID: 6812360275880991981, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGameClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812360275880991981, guid: 63eeed59a09b7964188723bc31f849ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MultiplayerLobby, Assembly-CSharp
       objectReference: {fileID: 0}

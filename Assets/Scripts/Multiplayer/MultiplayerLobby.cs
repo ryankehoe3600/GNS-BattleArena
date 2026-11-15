@@ -21,6 +21,7 @@ using System.Collections.Generic;
     public GameObject roomEntryPrefab;
     public Transform listRoomPanelContent;
     Dictionary<string, RoomInfo> cachedRoomList;
+    public GameObject startGameButton;
 
     private void Start()
     {
@@ -30,6 +31,8 @@ using System.Collections.Generic;
         Debug.Log("Generated player name: " + playerName);
 
         cachedRoomList = new Dictionary<string, RoomInfo>();
+
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
     
     public void LoginButtonClicked()
@@ -99,6 +102,14 @@ using System.Collections.Generic;
         PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);
     }
 
+    public void StartGameClicked()
+    {
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        PhotonNetwork.CurrentRoom.IsVisible = false;
+
+        PhotonNetwork.LoadLevel("Multiplayer");
+    }
+
     public override void OnCreatedRoom()
     {
         Debug.Log("Room has beencreated!");
@@ -115,6 +126,8 @@ using System.Collections.Generic;
         Debug.Log("Room has been joined!");
 
         ActivatePanel("InsideRoom");
+
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
 
         foreach (var player in PhotonNetwork.PlayerList)
         {
@@ -250,6 +263,11 @@ using System.Collections.Generic;
         DestroyChildren(insideRoomPlayerList);
         
         cachedRoomList.Clear();
+    }
+
+    public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
+    {
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
   }
 
