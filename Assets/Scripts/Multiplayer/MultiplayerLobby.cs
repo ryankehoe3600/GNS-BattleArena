@@ -20,6 +20,7 @@ using System.Collections.Generic;
     public Transform listRoomPanel;
     public GameObject roomEntryPrefab;
     public Transform listRoomPanelContent;
+    Dictionary<string, RoomInfo> cachedRoomList;
 
     private void Start()
     {
@@ -27,6 +28,8 @@ using System.Collections.Generic;
         string.Format("Player {0}", Random.Range(1, 1000000));
 
         Debug.Log("Generated player name: " + playerName);
+
+        cachedRoomList = new Dictionary<string, RoomInfo>();
     }
     
     public void LoginButtonClicked()
@@ -121,6 +124,8 @@ using System.Collections.Generic;
             );
 
             playerListEntry.GetComponent<Text>().text = player.NickName;
+
+            playerListEntry.name = player.NickName;
         }
     }
 
@@ -162,7 +167,11 @@ using System.Collections.Generic;
     {
         Debug.Log("Room updates: " + roomList.Count);
 
-        foreach (var room in roomList)
+        DestroyChildren(listRoomPanelContent);
+
+        UpdateCachedRoomList(roomList);
+
+        foreach (var room in cachedRoomList)
         {
             var newRoomEntry = Instantiate(
                 roomEntryPrefab,
@@ -172,13 +181,57 @@ using System.Collections.Generic;
             var newRoomEntryScript = 
             newRoomEntry.GetComponent<RoomEntry>();
 
-            newRoomEntryScript.roomName = room.Name;
+            newRoomEntryScript.roomName = room.Key;
 
             newRoomEntryScript.roomText.text = 
-            string.Format("{0} - {1}/{2}", 
-            room.Name, 
-            room.PlayerCount, 
-            room.MaxPlayers);
+            string.Format("{0} -({1}/{2})", 
+            room.Key, 
+            room.Value.PlayerCount, 
+            room.Value.MaxPlayers);
+        }
+    }
+
+    public void UpdateCachedRoomList(List<RoomInfo> roomList)
+    {
+        foreach (var room in roomList)
+        {
+            if (!room.IsOpen || !room.IsVisible || room.RemovedFromList)
+            {
+                cachedRoomList.Remove(room.Name);
+            }
+            else
+            {
+                cachedRoomList[room.Name] = room;
+            }
+        }
+
+    }
+
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        Debug.Log("A Player joined the Room");
+
+        var playerListEntry = Instantiate(
+            textPrefab,
+            insideRoomPlayerList
+        );
+
+        playerListEntry.GetComponent<Text>().text = newPlayer.NickName;
+        
+        playerListEntry.name = newPlayer.NickName;
+    }
+
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        Debug.Log("A Player left the Room");
+
+        foreach (Transform child in insideRoomPlayerList)
+        {
+            if (child.name == otherPlayer.NickName)
+            {
+                Destroy(child.gameObject);
+                break;
+            }
         }
     }
 
@@ -192,6 +245,11 @@ using System.Collections.Generic;
         Debug.Log("Left lobby!");
 
         ActivatePanel("Selection");
+
+        DestroyChildren(listRoomPanelContent);
+        DestroyChildren(insideRoomPlayerList);
+        
+        cachedRoomList.Clear();
     }
   }
 
