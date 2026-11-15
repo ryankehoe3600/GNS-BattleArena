@@ -12,9 +12,23 @@ using UnityEngine.UI;
     public Transform InsideRoomPanel;
     public Transform ListRoomsPanel;
     public InputField roomNameInput;
+    public InputField playerNameInput;
+    string playerName;
+    public GameObject textPrefab;
+    public Transform insideRoomPlayerList;
+
+    private void Start()
+    {
+        playerNameInput.text = playerName =
+        string.Format("Player {0}", Random.Range(1, 1000000));
+
+        Debug.Log("Generated player name: " + playerName);
+    }
     
     public void LoginButtonClicked()
     {
+        PhotonNetwork.LocalPlayer.NickName = playerName = playerNameInput.text;
+
         PhotonNetwork.ConnectUsingSettings();
     }
 
@@ -94,6 +108,28 @@ using UnityEngine.UI;
         Debug.Log("Room has been joined!");
 
         ActivatePanel("InsideRoom");
+
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            var playerListEntry = Instantiate(
+                textPrefab,
+                insideRoomPlayerList
+            );
+
+            playerListEntry.GetComponent<Text>().text = player.NickName;
+        }
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        Debug.Log("Room has been left!");
+
+        ActivatePanel("CreateRoom");
     }
   }
 
