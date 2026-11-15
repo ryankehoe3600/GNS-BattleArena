@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98ed336ca9f4d4682dcf666a8d0754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
-  ScenceName: Singleplayer
+  SceneName: Singleplayer
 --- !u!1001 &231613358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98ed336ca9f4d4682dcf666a8d0754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
-  ScenceName: Lobby
+  SceneName: Lobby
 --- !u!1001 &520763311
 PrefabInstance:
   m_ObjectHideFlags: 0

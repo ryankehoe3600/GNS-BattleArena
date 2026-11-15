@@ -168,6 +168,17 @@ using System.Collections.Generic;
                 roomEntryPrefab,
                 listRoomPanelContent
             );
+
+            var newRoomEntryScript = 
+            newRoomEntry.GetComponent<RoomEntry>();
+
+            newRoomEntryScript.roomName = room.Name;
+
+            newRoomEntryScript.roomText.text = 
+            string.Format("{0} - {1}/{2}", 
+            room.Name, 
+            room.PlayerCount, 
+            room.MaxPlayers);
         }
     }
 
