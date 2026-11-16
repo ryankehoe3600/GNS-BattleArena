@@ -9,15 +9,22 @@ public class MultiplayerBulletController : MonoBehaviour
     public GameObject bulletImpactEffect;
     public int damage = 10;
 
+    [HideInInspector]
+    public Photon.Realtime.Player owner;
+
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
     }
 
-    public void InitializeBullet(Vector3 originalDirection)
+    public void InitializeBullet(
+        Vector3 originalDirection,
+        Photon.Realtime.Player givenPlayer)
     {
         transform.forward = originalDirection;
         rigidBody.linearVelocity = transform.forward * bulletSpeed;
+
+        owner = givenPlayer;
     }
 
     private void OnCollisionEnter(Collision collision)
