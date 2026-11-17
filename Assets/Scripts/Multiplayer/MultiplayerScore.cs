@@ -32,12 +32,21 @@ public class MultiplayerScore : MonoBehaviourPunCallbacks
     }
 
     public override void OnPlayerPropertiesUpdate(
-        Photon.Realtime.Player targetplayer,
+        Photon.Realtime.Player targetPlayer,
         ExitGames.Client.Photon.Hashtable changedProps)
         {
+            var playerScoreObject = playerScore[targetPlayer.ActorNumber];
+
+            var playerScoreObjectText =
+            playerScoreObject.GetComponent<Text>();
+
+            playerScoreObjectText.text =
+            string.Format("{0} Score: {1}",
+            targetPlayer.NickName,
+            targetPlayer.GetScore());
 
         }
-        
+
     // Update is called once per frame
     void Update()
     {

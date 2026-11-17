@@ -1672,6 +1672,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec828c4758d84e74a8bf1a90d601c8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiplayerScore
+  playerScorePrefab: {fileID: 3406645242432595640, guid: 08243dd321050bc488850b85ed81b247, type: 3}
+  panel: {fileID: 1043033484}
+--- !u!224 &1043033484 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8355854883582925529, guid: af7cf9aec611c4a44b0f28006b2b970a, type: 3}
+  m_PrefabInstance: {fileID: 1043033481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1089184353
 PrefabInstance:
   m_ObjectHideFlags: 0
