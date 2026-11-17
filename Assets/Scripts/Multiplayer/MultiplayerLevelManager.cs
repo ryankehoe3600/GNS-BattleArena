@@ -11,6 +11,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     public int maxKills = 3;
     public GameObject gameOverPopup;
     public Text winnerText;
+    public Text resultText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +30,16 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
             if(targetPlayer.GetScore() >= maxKills)
             {
                 winnerText.text = targetPlayer.NickName;
+
+                if (targetPlayer == PhotonNetwork.LocalPlayer)
+                {
+                    resultText.text = "YOU WIN!";
+                }
+                else
+                {
+                    resultText.text = "YOU LOSE!";
+                }
+                
                 gameOverPopup.SetActive(true);
 
             }
