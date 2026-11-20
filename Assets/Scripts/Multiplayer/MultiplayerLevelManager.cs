@@ -20,6 +20,8 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        PhotonNetwork.LocalPlayer.SetScore(0);
+
         PhotonNetwork.Instantiate(
             "MultiplayerPlayer",
             Vector3.zero,
@@ -90,6 +92,21 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
                     timerReady = true;
             }
 
+            if (propertiesThatChanged.ContainsKey("RestartRound"))
+            {
+                gameOverPopup.SetActive(false);
+                matchEnded = false;
+                PhotonNetwork.LocalPlayer.SetScore(0);
+
+                foreach (Multiplayer player in 
+                        FindObjectsByType<Multiplayer>(FindObjectsSortMode.None))
+                {
+                    player.ResetPlayerForNewRound();
+                }
+
+                Debug.Log("New round started!");
+            }
+
         }
 
     void Update()
@@ -156,6 +173,15 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
         gameOverPopup.SetActive(true);
     }
     
-    
+    public void PlayAgain()
+    {
+        ExitGames.Client.Photon.Hashtable properties =
+            new ExitGames.Client.Photon.Hashtable();
+
+        properties["RestartRound"] = PhotonNetwork.ServerTimestamp;
+        properties["MatchEndTime"] = PhotonNetwork.Time + matchDuration;
+
+        PhotonNetwork.CurrentRoom.SetCustomProperties(properties);
+    }
 
 }

@@ -19,12 +19,25 @@ public class Multiplayer : MonoBehaviour, IPunObservable
     public int health = 100;
     public Slider healthBar;
     PhotonView photonView;
+    public Material rhinoBlue;
+    public Material rhinoRed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         photonView = GetComponent<PhotonView>();
+
+        MeshRenderer rhinoRenderer = GetComponent<MeshRenderer>();
+
+        if (photonView.Owner.ActorNumber % 2 == 1)
+        {
+            rhinoRenderer.material = rhinoBlue;
+        }
+        else
+        {
+            rhinoRenderer.material = rhinoRed;
+        }
     }
 
     void FixedUpdate()
@@ -66,6 +79,14 @@ public class Multiplayer : MonoBehaviour, IPunObservable
     {
         health = 100;
         healthBar.value = health;
+    }
+
+    public void ResetPlayerForNewRound()
+    {
+        if (!photonView.IsMine)
+            return;
+
+        PlayerDied();
     }
 
     [PunRPC]
@@ -121,7 +142,9 @@ public class Multiplayer : MonoBehaviour, IPunObservable
     
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    public void OnPhotonSerializeView(
+        PhotonStream stream, 
+        PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {

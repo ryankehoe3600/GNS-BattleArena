@@ -424,6 +424,8 @@ MonoBehaviour:
   bulletFiringEffect: {fileID: 1000011513120438, guid: f70d27f5cf28c8941bbfd6febd74797f, type: 3}
   health: 100
   healthBar: {fileID: 3929573590577108116}
+  rhinoBlue: {fileID: 2100000, guid: 435cbec7e5bad3844a5bc7c01b1acf41, type: 2}
+  rhinoRed: {fileID: 2100000, guid: b4b8d98b8a78ed44bb1264e04e6b0637, type: 2}
 --- !u!114 &3475010085479719049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,10 +441,11 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: -2125039027017581509}
   - {fileID: 2058324401613276160}
   sceneViewId: 0
   InstantiationId: 0
