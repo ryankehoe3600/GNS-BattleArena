@@ -46,4 +46,5 @@ Developed as part of my Games Networking and Security module at the University o
 
 ## Gameplay Screenshots
 
-Screenshots and gameplay footage coming soon.
+<img width="991" height="419" alt="image" src="https://github.com/user-attachments/assets/7ede66ea-4ebb-4179-9a1c-7d3af7e68748" />
+
